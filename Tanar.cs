@@ -19,8 +19,8 @@ namespace Karesz
 
 		void TANÁR_ROBOTJAI()
 		{
-			new Robot("Karesz", 0, 0, 0, 0, 100, r.Next(14) + 11, 16 , 0);//100 hógolyóval indít
-			Robot gonesz = new Robot("Golyesz", Robot.képkészlet_lilesz, 0, 0, 0, 0, 1000, r.Next(14), 1 , 2);//1000hógolyóval indít
+			new Robot("Karesz", 0, 0, 0, 0, 100, r.Next(15) + 13, 22 , 0);//100 hógolyóval indít
+			Robot gonesz = new Robot("Golyesz", Robot.képkészlet_lilesz, 0, 0, 0, 0, 1000, r.Next(15) + 13, 3 , 2);//1000hógolyóval indít
 
 			gonesz.Feladat = delegate
 			{
