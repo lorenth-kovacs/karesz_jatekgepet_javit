@@ -14,12 +14,12 @@ namespace Karesz
     {
 
 		static Random r = new Random();
-		string betöltendő_pálya = "minotaur_folyoso.txt";
+		string betöltendő_pálya = "palya01.txt";
 
 		void TANÁR_ROBOTJAI()
 		{
 			new Robot("Karesz", 0, 0, 0, 0, 0, 16, 16, 2);
-			Robot m = new Robot("Minotaur", Robot.képkészlet_lilesz, 0, 0, 0, 0, 0, 17, 17, 1);
+			Robot m = new Robot("Golyesz", Robot.képkészlet_lilesz, 0, 0, 0, 0, 0, 1, 1, 1);
 
 			m.Feladat = delegate
 			{
