@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Threading;
+using System.IO;
 
 namespace Karesz
 {
@@ -14,7 +15,7 @@ namespace Karesz
     {
 
 		static Random r = new Random();
-		string betöltendő_pálya = "palya01.txt";
+		string betöltendő_pálya = "../../Palyak/Palya01.txt";
 
 		void TANÁR_ROBOTJAI()
 		{

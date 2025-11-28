@@ -207,10 +207,7 @@ namespace Karesz
 			}
 			void Sírkő_letétele()
 			{
-				if (Név == "Golyesz")
-					pálya.LegyenItt(H, hó);
-				else
-					pálya.LegyenItt(H, fekete);
+				pálya.LegyenItt(H, fekete);
 			}
 			static void Halállistához(Func<Robot, bool> predikátum)
 			{
@@ -298,7 +295,7 @@ namespace Karesz
 
 				Cselekvés_vége();
 			}
-			public void Lőjj()
+			public void Lőjj() //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 			{
 				if (0 < kődb[hó - 2])
 				{
