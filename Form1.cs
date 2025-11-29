@@ -22,9 +22,8 @@ namespace Karesz
 			Robot.Get("Karesz").Feladat = delegate ()
 			{
 				//Gonesz megtámadta KARESZT. Segíts KARESZNAK legyőzni goneszt, akinek három élete van.
-				
+				while (true)
 				Lőjj();
-				Lépj();
 
 
 			};

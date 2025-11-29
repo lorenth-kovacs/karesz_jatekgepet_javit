@@ -13,10 +13,11 @@ namespace Karesz
 {
 	partial class Form1
 	{
-		class Robot
+        class Robot
 		{
 			#region statikus tulajdonságok
 			static readonly int várakozási_idő = 100;
+			static int gonesz_eletei = 3;
 			public static Form1 form;
 			public static Pálya pálya { get => Robot.form.pálya; }
 			public static List<Robot> lista = new List<Robot>();
@@ -205,12 +206,61 @@ namespace Karesz
 
 			static void holtak_összegyűjtése()
 			{
-				Robot.Halállistához(r => pálya.MiVanItt(r.helyigény) == fal); // falba lép
-				Robot.Halállistához(r => !pálya.BenneVan(r.helyigény)); // kiesik a pályáról
-				Robot.Halállistához((r1, r2) => r1.helyigény == r2.helyigény); // egy helyre léptek
-				Robot.Halállistához((r1, r2) => r1.helyigény == r2.H && r2.helyigény == r1.H); // átmentek egymáson / megpróbáltak helyet cserélni
-			}
-			void Sírkő_letétele()
+                Robot.Halállistához(r =>
+                {
+                    bool falElotte = pálya.MiVanItt(r.helyigény) == fal;
+                    if (!falElotte)
+                        return false;
+                    if (r.Név == "Gonesz")
+                    {
+                        if (gonesz_eletei == 1)
+                            return true;
+                        gonesz_eletei--;
+                        return false;
+                    }
+                    return true;
+                });// falba lép
+                Robot.Halállistához(r =>
+                {
+                    if (pálya.BenneVan(r.helyigény))
+                        return false;
+                    if (r.Név == "Gonesz")
+                    {
+                        if (gonesz_eletei == 1)
+                            return true;
+                        gonesz_eletei--;
+                        return false;
+                    }
+                    return true;
+                }); // kiesik a pályáról
+                Robot.Halállistához((r1, r2) =>
+                {
+                    if (r1.helyigény != r2.helyigény)
+                        return false;
+                    if (r1.Név != "Gonesz" && r2.Név != "Gonesz")
+                        return true;
+                    if (gonesz_eletei == 1)
+                        return true;
+                    gonesz_eletei--; // élet levonása
+                    return false;
+                }); // egy helyre léptek
+                Robot.Halállistához((r1, r2) =>
+                {
+                    bool csere =
+                        r1.helyigény == r2.H &&
+                        r2.helyigény == r1.H;
+
+                    if (!csere)
+                        return false;
+                    if (r1.Név != "Gonesz" && r2.Név != "Gonesz")
+                        return true;
+                    if (gonesz_eletei == 1)
+                        return true;
+                    gonesz_eletei--;
+                    return false;
+                });// átmentek egymáson / megpróbáltak helyet cserélni
+            }
+            void Sírkő_letétele()
 			{
 				pálya.LegyenItt(H, fekete);
 			}
