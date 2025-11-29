@@ -178,7 +178,7 @@ namespace Karesz
 
 				foreach (Hógolyó hógolyó in Hógolyó.lista)
 				{
-					Körrajz(e, 1, hógolyó.h.X, hógolyó.h.Y, l);
+					Körrajz(e, hó, hógolyó.h.X, hógolyó.h.Y, l);
 				}
 			}
 

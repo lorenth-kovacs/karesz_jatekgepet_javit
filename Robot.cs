@@ -305,7 +305,7 @@ namespace Karesz
 				if (0 < kődb[hó - 2])
 				{
 					--kődb[hó - 2];
-					Robot.Ellövendő_lövedékek.Add((this.H + this.v, this.v));
+					Robot.Ellövendő_lövedékek.Add((this.H, this.v));
 				}
 				else
 					Mondd("Nincsen nálam hó!");
