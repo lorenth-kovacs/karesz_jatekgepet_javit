@@ -33,6 +33,8 @@ namespace Karesz
             bool irány = (r.Next(1) == 0) ? true : false;
             while (true)
             {
+
+                Vár(gonesz, r.Next(3));
                 if (irány)//balra KARESZ szempontjából
                 {
                     //akadálytávolság; forgatott
