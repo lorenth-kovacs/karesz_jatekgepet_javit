@@ -371,12 +371,67 @@ namespace Karesz
 			#endregion
 			#region Szenzorok
 
-			/// <summary>
-			/// Megadja, hogy az adott színből mennyi köve van a robotnak.
-			/// </summary>
-			/// <param name="szín"></param>
-			/// <returns></returns>
-			public int Köveinek_száma_ebből(int szín) => kődb[szín - 2];
+			(Func<Vektor, bool>, Func<Vektor, Vektor, int>) Hógolyótaláló_predikátum()
+			{
+				Func<Vektor, bool> predikatum;
+                Func<Vektor, Vektor, int> különbség;
+                if (this.v.X == 0)
+                {
+                    if (this.v.Y == -1) // fel
+                    {
+                        predikatum = hely1 => hely1.X == this.h.X && hely1.Y < this.h.Y;
+                        különbség = (kareszhely, hógolyóhely) => kareszhely.Y - hógolyóhely.Y;
+                    }
+                    else // le
+                    {
+                        predikatum = hely1 => hely1.X == this.h.X && hely1.Y > this.h.Y;
+                        különbség = (kareszhely, hógolyóhely) => hógolyóhely.Y - kareszhely.Y;
+                    }
+                }
+                else
+                {
+                    if (this.v.X == -1)
+                    { // balra
+                        predikatum = hely1 => hely1.X < this.h.X && hely1.Y == this.h.Y;
+                        különbség = (kareszhely, hógolyóhely) => kareszhely.X - hógolyóhely.X;
+                    }
+                    else // jobbra
+                    {
+                        predikatum = hely1 => hely1.X > this.h.X && hely1.Y == this.h.Y;
+                        különbség = (kareszhely, hógolyóhely) => hógolyóhely.X - kareszhely.X;
+                    }
+                }
+				return (predikatum, különbség);
+            }
+
+            public int Milyen_messze_van_hógolyó()
+			{
+				int result = -1;
+				(Func<Vektor, bool> predikatum, Func<Vektor, Vektor, int> különbség) = Hógolyótaláló_predikátum();
+				foreach(Hógolyó hógolyó in Hógolyó.lista)
+				{
+					int temp;
+					if (predikatum(hógolyó.h) && (result == -1 | (temp = különbség(this.h, hógolyó.h)) < temp)) // direkt szimpla |
+					{
+						result = temp;
+					}
+				}
+				return result;
+			}
+			public bool Erre_jön_e_a_hógolyó()
+			{
+				foreach(Hógolyó hógolyó in Hógolyó.lista)
+				{
+					if()
+				}
+			}
+
+            /// <summary>
+            /// Megadja, hogy az adott színből mennyi köve van a robotnak.
+            /// </summary>
+            /// <param name="szín"></param>
+            /// <returns></returns>
+            public int Köveinek_száma_ebből(int szín) => kődb[szín - 2];
 
 			/// <summary>
 			/// Megadja, hogy kavicson áll-e a robot.

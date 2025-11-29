@@ -9,7 +9,11 @@ namespace Karesz
 	{
 		#region Robotokra visszavezetett parancsok
 
-		void Lépj() =>
+		int Milyen_messze_van_hógolyó() => Robot.akit_kiválasztottak.Milyen_messze_van_hógolyó();
+
+		bool Erre_jön_e_a_hógolyó() => Robot.akit_kiválasztottak.Erre_jön_e_a_hógolyó();
+
+        void Lépj() =>
 			Robot.akit_kiválasztottak.Lépj();
 
 		void Lőjj() =>

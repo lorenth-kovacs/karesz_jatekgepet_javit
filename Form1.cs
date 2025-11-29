@@ -26,6 +26,9 @@ namespace Karesz
 				Lépj();
 				Lőjj();
 
+				int a = Milyen_messze_van_hógolyó();
+				bool b = Erre_jön_e_a_hógolyó();
+
 			};
 		}
 
@@ -41,7 +44,7 @@ namespace Karesz
 PÁLYASPECIFIKUS
 Lőjj();							-------- Karesz lő előre egy hógolyót
 Milyen_messze_van_hógolyó()		-------- Visszaadja a Karesszal szemben levő legközelebbi hógolyó távolságát, vagy -1-et
-Erre_jön_e_a_hógolyó()			-------- igaz, ha Karesz felé közeledik a Karesszal szembe levő hógolyó
+Erre_jön_e_a_hógolyó()			-------- igaz, ha Karesz felé közeledik a Karesszal szembe levő legközelebbi hógolyó
 
 MOZGÁSOK
 
