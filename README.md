@@ -1,4 +1,4 @@
-Gonesz le akarja rombolni a játékgépet.
+Gonesz le akarja rombolni a játékgépet. \n
 A játékgép széléből le is tört egy darabkát.
   ---- Segíts KARESZNAK betömni ezt a lyukat egy piros kaviccsal. ----
 Vigyázz, mert Gonesz ezt nem szeretné, és hógolyókkal bombázza KARESZT.
