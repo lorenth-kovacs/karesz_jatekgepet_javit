@@ -21,13 +21,30 @@ namespace Karesz
 		{
 			Robot.Get("Karesz").Feladat = delegate ()
 			{
-				// Gonesz le akarja rombolni a játékgépet. A játékgép széléből le is tört egy darabkát. Segíts KARESZNAK betömni ezt a lyukat egy piros kaviccsal. Vigyázz, mert Gonesz ezt nem szeretné, és hógolyókkal bombázza KARESZT. Te is lőhetsz hógolyókat, de spórolj velük, mert csak 10 van. Gonesznak három élete van.
+				// Gonesz le akarja rombolni a játékgépet.
+				// A játékgép széléből le is tört egy darabkát.
+				// Segíts KARESZNAK betömni ezt a lyukat egy piros kaviccsal.
+				// Vigyázz, mert Gonesz ezt nem szeretné, és hógolyókkal bombázza KARESZT.
+				// Te is lőhetsz hógolyókat, de spórolj velük, mert csak 10 van.
+				// Gonesznak három élete van.
+				// tipp: Ha összeütközik 2 hógolyó, mindkettő elpusztul.
 
 				Lépj();
 				Lőjj();
 
 				int a = Milyen_messze_van_hógolyó();
 				bool b = Erre_jön_e_a_hógolyó();
+
+				for (int i = 0; i < 9; i++)
+				{
+					Lőjj();
+				}
+				Fordulj(jobbra);
+				Tegyél_le_egy_kavicsot(piros);
+				while (true)
+				{
+					Lépj();
+				}
 
 			};
 		}

@@ -231,12 +231,6 @@ namespace Karesz
 			{
 				pálya.LegyenItt(H, fekete);
 			}
-			public void Lelőve()
-			{
-				életei--;
-				if(életei == 0)
-					Robot.halállista.Add(this);
-			}
 			bool Van_e_itt_hógolyó()
 			{
                 for (int i = 0; i < Hógolyó.lista.Count; i++)
@@ -244,7 +238,9 @@ namespace Karesz
                     if (this.helyigény == Hógolyó.lista[i].helyigény)
                     {
                         Hógolyó.lista.RemoveAt(i);
-						return true;
+						this.életei--;
+						Mondd(életei + " életem maradt.");
+						return this.életei == 0;
                     }
                 }
 				return false;
@@ -253,12 +249,7 @@ namespace Karesz
 			{
 				foreach (Robot robot in Robot.lista)
 				{
-					if (predikátum(robot))
-					{
-						robot.életei--;
-						robot.Mondd(robot.életei + " életem maradt");
-					}
-					if(robot.életei == 0)
+					if(predikátum(robot))
 						Robot.halállista.Add(robot);
 				}
 			}
@@ -266,19 +257,11 @@ namespace Karesz
 			{
 				for (int i = 0; i < Robot.lista.Count; i++)
 					for (int j = i+1; j < Robot.lista.Count; j++)
-					{
 						if (predikátum(Robot.lista[i], Robot.lista[j]))
 						{
-							Robot.lista[i].életei--;
-							Robot.lista[j].életei--;
-							Robot.lista[i].Mondd(Robot.lista[i].életei + " életem maradt");
-							Robot.lista[j].Mondd(Robot.lista[j].életei + " életem maradt");
-						}
-						if (Robot.lista[i].életei == 0)
 							Robot.halállista.Add(Robot.lista[i]);
-						if (Robot.lista[j].életei == 0)
 							Robot.halállista.Add(Robot.lista[j]);
-					}
+						}
 			}
 			void Start_or_Resume()
 			{
@@ -374,18 +357,18 @@ namespace Karesz
 			(Func<Vektor, bool>, Func<Vektor, Vektor, int>) Hógolyótaláló_predikátum()
 			{
 				Func<Vektor, bool> predikatum;
-                Func<Vektor, Vektor, int> különbség;
+				Func<Vektor, Vektor, int> különbség;
                 if (this.v.X == 0)
                 {
                     if (this.v.Y == -1) // fel
                     {
                         predikatum = hely1 => hely1.X == this.h.X && hely1.Y < this.h.Y;
-                        különbség = (kareszhely, hógolyóhely) => kareszhely.Y - hógolyóhely.Y;
+						különbség = (kareszhely, hógolyóhely) => kareszhely.Y - hógolyóhely.Y;
                     }
                     else // le
                     {
                         predikatum = hely1 => hely1.X == this.h.X && hely1.Y > this.h.Y;
-                        különbség = (kareszhely, hógolyóhely) => hógolyóhely.Y - kareszhely.Y;
+						különbség = (kareszhely, hógolyóhely) => hógolyóhely.Y - kareszhely.Y;
                     }
                 }
                 else
@@ -393,7 +376,7 @@ namespace Karesz
                     if (this.v.X == -1)
                     { // balra
                         predikatum = hely1 => hely1.X < this.h.X && hely1.Y == this.h.Y;
-                        különbség = (kareszhely, hógolyóhely) => kareszhely.X - hógolyóhely.X;
+                           különbség = (kareszhely, hógolyóhely) => kareszhely.X - hógolyóhely.X;
                     }
                     else // jobbra
                     {
@@ -403,11 +386,10 @@ namespace Karesz
                 }
 				return (predikatum, különbség);
             }
-
             public int Milyen_messze_van_hógolyó()
 			{
 				int result = -1;
-				(Func<Vektor, bool> predikatum, Func<Vektor, Vektor, int> különbség) = Hógolyótaláló_predikátum();
+				(Func<Vektor, bool> predikatum, Func<Vektor, Vektor, int> különbség)  = Hógolyótaláló_predikátum();
 				foreach(Hógolyó hógolyó in Hógolyó.lista)
 				{
 					int temp;
@@ -420,10 +402,18 @@ namespace Karesz
 			}
 			public bool Erre_jön_e_a_hógolyó()
 			{
+				(Func<Vektor, bool> predikatum, Func<Vektor, Vektor, int> különbség) = Hógolyótaláló_predikátum();
+				bool result = false;
+				int különbség_int = -1;
 				foreach(Hógolyó hógolyó in Hógolyó.lista)
 				{
-					if()
+					int temp;
+					if (predikatum(hógolyó.h) && (különbség_int == -1 | (temp = különbség(this.h, hógolyó.h)) < temp)) {
+						különbség_int = temp;
+						result = (hógolyó.v.X == this.v.X) != (hógolyó.v.Y == this.v.Y);
+					}
 				}
+				return result;
 			}
 
             /// <summary>

@@ -21,6 +21,8 @@ namespace Karesz
 
 		void Várj() =>
 			Robot.akit_kiválasztottak.Várj();
+
+		void Mondd(string text) => Robot.akit_kiválasztottak.Mondd(text);
 		/*
 		void Fordulj_jobbra() => 
 			Robot.akit_kiválasztottak.Fordulj(jobbra);
