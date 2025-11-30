@@ -25,9 +25,11 @@ namespace Karesz
 				// A játékgép széléből le is tört egy darabkát.
 				// Segíts KARESZNAK betömni ezt a lyukat egy piros kaviccsal.
 				// Vigyázz, mert Gonesz ezt nem szeretné, és hógolyókkal bombázza KARESZT.
+				// Gonesz kissé ügyetlen, ezért folyton botladozik a pályán.
 				// Te is lőhetsz hógolyókat, de spórolj velük, mert csak 10 van.
 				// Gonesznak három élete van.
 				// tipp: Ha összeütközik 2 hógolyó, mindkettő elpusztul.
+				// tehát nem kell feltétlenül gyilkolni, a cél, hogy betömjük a lyukat egy piros kaviccsal (meg esetleg beszéld rá Goneszt, hogy többé ne tegyen ilyet)
 
 				Lépj();
 				Lőjj();
