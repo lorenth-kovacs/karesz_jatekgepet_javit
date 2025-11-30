@@ -31,13 +31,22 @@ namespace Karesz
 				// tipp: Ha összeütközik 2 hógolyó, mindkettő elpusztul.
 				// tehát nem kell feltétlenül gyilkolni, a cél, hogy KARESZ betömje a lyukat egy piros kaviccsal (meg esetleg beszéld rá Goneszt, hogy többé ne tegyen ilyet)
 
+				while (!Erre_jön_e_a_hógolyó()) 
+					Várj();
+				Fordulj(balra);
 				Lépj();
-				Lőjj();
-
-				int a = Milyen_messze_van_hógolyó();
-				bool b = Erre_jön_e_a_hógolyó();
-
-
+				Fordulj(jobbra);
+				if (Erre_jön_e_a_hógolyó())
+				{
+					while (Milyen_messze_van_hógolyó() > 2)
+						Várj();
+					Lőjj();
+					Várj();
+				}
+				Fordulj(balra);
+				while (!Van_e_előttem_fal())
+					Lépj();
+				Fordulj(jobbra);
 			};
 		}
 
