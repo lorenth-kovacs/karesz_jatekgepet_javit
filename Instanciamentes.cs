@@ -9,9 +9,17 @@ namespace Karesz
 	{
 		#region Robotokra visszavezetett parancsok
 
+		/// <summary>
+		/// Visszaadja a Karesszal szemben levő legközelebbi hógolyó távolságát, vagy -1-et
+		/// </summary>
+		/// <returns></returns>
 		int Milyen_messze_van_hógolyó() => Robot.akit_kiválasztottak.Milyen_messze_van_hógolyó();
 
-		bool Erre_jön_e_a_hógolyó() => Robot.akit_kiválasztottak.Erre_jön_e_a_hógolyó();
+        /// <summary>
+        /// igaz, ha Karesz felé közeledik a Karesszal szembe levő legközelebbi hógolyó
+        /// </summary>
+        /// <returns></returns>
+        bool Erre_jön_e_a_hógolyó() => Robot.akit_kiválasztottak.Erre_jön_e_a_hógolyó();
 
         void Lépj() =>
 			Robot.akit_kiválasztottak.Lépj();

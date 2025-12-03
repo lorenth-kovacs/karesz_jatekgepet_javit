@@ -389,6 +389,10 @@ namespace Karesz
                 }
 				return (predikatum, különbség);
             }
+            /// <summary>
+            /// Visszaadja a Karesszal szemben levő legközelebbi hógolyó távolságát, vagy -1-et
+            /// </summary>
+            /// <returns></returns>
             public int Milyen_messze_van_hógolyó()
 			{
 				int result = -1;
@@ -403,7 +407,11 @@ namespace Karesz
 				}
 				return result;
 			}
-			public bool Erre_jön_e_a_hógolyó()
+            /// <summary>
+            /// igaz, ha Karesz felé közeledik a Karesszal szembe levő legközelebbi hógolyó
+            /// </summary>
+            /// <returns></returns>
+            public bool Erre_jön_e_a_hógolyó()
 			{
 				(Func<Vektor, bool> predikatum, Func<Vektor, Vektor, int> különbség) = Hógolyótaláló_predikátum();
 				bool result = false;
