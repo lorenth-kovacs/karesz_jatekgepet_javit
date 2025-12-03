@@ -28,6 +28,7 @@ namespace Karesz
 				// Gonesz kissé ügyetlen, ezért folyton botladozik a pályán.
 				// Te is lőhetsz hógolyókat, de spórolj velük, mert csak 10 van.
 				// Gonesznak három élete van.
+				// Karesz random szélességen random van forgatva.
 				// tipp: Ha összeütközik 2 hógolyó, mindkettő elpusztul.
 				// (Karesz távolsága a rongálástól: 14)
 				// tehát nem kell feltétlenül gyilkolni, a cél az, hogy ** KARESZ betömje a lyukat egy piros kaviccsal ** (meg esetleg beszéld rá Goneszt, hogy többé ne tegyen ilyet)
